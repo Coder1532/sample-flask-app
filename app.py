@@ -1,11 +1,15 @@
 from flask import Flask
-app = Flask(__name__)
+from flask_cors import CORS
 
-@app.route('/')
+app = Flask(__name__)
+# CORS(app, resources={r"/api/":{"origins":"https://sample-api-call.gowrisivaramp.repl.co"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+@app.route('/api/', methods=['GET'])
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/hola')
+@app.route('/api/hola', methods=['GET'])
 def hello_world2():
     return 'Hola'
 
